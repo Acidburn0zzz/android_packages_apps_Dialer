@@ -223,6 +223,9 @@ public class DialpadFragment extends Fragment
     private View mDigitsContainer;
     private static EditText mDigits;
 
+    private EditText mRecipients;
+    private View mDialpadStub;
+
     /** Remembers if we need to clear digits field when the screen is completely gone. */
     private boolean mClearDigitsOnStop;
 
