@@ -31,7 +31,6 @@ public final class LookupSettings {
     public static final String FLP_OPENSTREETMAP = "OpenStreetMap";
 
     /** Reverse lookup providers */
-    public static final String RLP_GOOGLE = "Google";
     public static final String RLP_OPENCNAM = "OpenCnam";
     public static final String RLP_WHITEPAGES = "WhitePages";
     public static final String RLP_WHITEPAGES_CA = "WhitePages_CA";
@@ -72,11 +71,8 @@ public final class LookupSettings {
                 Settings.System.REVERSE_LOOKUP_PROVIDER);
 
         if (provider == null) {
-            // If Google Play Services is not available, default to the next
-            // provider in the list (OpenCnam)
             putString(context,
-                    Settings.System.REVERSE_LOOKUP_PROVIDER,
-                    isGmsInstalled(context) ? RLP_GOOGLE : RLP_OPENCNAM);
+                    Settings.System.REVERSE_LOOKUP_PROVIDER, RLP_OPENCNAM);
 
             provider = getString(context,
                     Settings.System.REVERSE_LOOKUP_PROVIDER);
@@ -91,16 +87,5 @@ public final class LookupSettings {
 
     private static void putString(Context context, String key, String value) {
         Settings.System.putString(context.getContentResolver(), key, value);
-    }
-
-    private static boolean isGmsInstalled(Context context) {
-        PackageManager pm = context.getPackageManager();
-        List<PackageInfo> packages = pm.getInstalledPackages(0);
-        for (PackageInfo info : packages) {
-            if (info.packageName.equals("com.google.android.gms")) {
-                return true;
-            }
-        }
-        return false;
     }
 }
