@@ -378,7 +378,7 @@
             </intent-filter>
         </receiver>
 
-        <provider android:name="com.android.dialer.lookup.DialerProvider"
+        <provider android:name="com.android.dialer.lookup.LookupProvider"
                   android:authorities="com.android.dialer.provider"
                   android:exported="false"
                   android:multiprocess="false" />
